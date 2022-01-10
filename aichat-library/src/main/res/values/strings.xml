@@ -1,0 +1,165 @@
+<resources>
+    <string name="app_name">MonolithsApplication</string>
+
+    <!-- インプレッションAPIアクセステスト用 -->
+    <string name="impression_not_if">cc812237a23d5a45a4c3bc19a918b34710564340b1834174d94f3b0b40d7589d06908564500a61c66521a87db9b4bb3e1d5b824bfeea32d98daeb2cf3b4f582c142401f7149d093b3200ee6f73e19882285877cd40b45f0e000acb4f13706b03efc533998e9f483ea1d3dfd8148f073f13b606db4cc06ec952ae781bdbef33c05c9d31fbd82de4de0dbf574ffb4bd54b5a604eddcc7a96e409e59b468f40e095167f013476c6ee2e33f701b24ed25f2b</string>
+
+    <!-- レイアウトの下部のボタンCaption -->
+    <string name="display_button">画面OFF</string>
+
+    <string name="sound_button">音声OFF</string>
+
+    <string name="detail_button">  詳細 </string>
+
+    <string name="restart_text">%1$s後に自動で画面表示が再開します</string>
+
+    <string name="restart_volume_text">%1$s後に自動で音声の出力が再開します</string>
+
+    <!-- エラーの文言 -->
+    <string name="error_response">レスポンスエラー</string>
+    <string name="error_response_null">レスポンスがNull</string>
+    <string name="error_communication">通信エラー</string>
+    <string name="error_save_creative">クリエイティブ保存エラー</string>
+    <string name="error_stream_close">ストリームクローズエラー</string>
+
+    <!-- 初期設定の文言 -->
+    <string name="display_ctl_bar">コントロールバーの表示</string>
+    <string name="use_first_view_ad">ファーストビュー広告の使用</string>
+    <string name="monoliths_initial_settings">Monolithsアプリ初期設定</string>
+    <string name="ok_initial_settings">OK</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="tap_if_applicable">該当するものをタップします</string>
+
+    <!-- AI Chat Text-->
+
+    <string name="ai_chat">AI CHAT</string>
+    <string name="chat_us">CHAT US</string>
+    <string name="dummy_message">軽カユヒナ亡暮イやっ公位てをぽし変行スリエ台田ス手暮クタ福紙ひ</string>
+    <string name="title_message">あなたにぴったりのスキンケア</string>
+
+    <string name="skincare_check_message_en">SKINCARE CHECK</string>
+    <string name="skincare_check_message_jp">スキンケア診断</string>
+    <string name="when_you_answer_7_questions_jp">７問の質問に答えると</string>
+    <string name="we_find_out_which_skincare_products_are_right_for_you">あなたに合ったスキンケアアイテムがわかる！</string>
+    <string name="start_diagnosis">診断START</string>
+    <string name="dummy_question">あなたの年齢を教えてください。</string>
+    <string name="dummy_question_number">Q1</string>
+    <string name="dummy_chip_message">20代</string>
+    <string name="top_message">TOPへ戻る</string>
+    <string name="dummy_q1">Q1</string>
+    <string name="q7_text">- Q7</string>
+    <string name="loading_result">診断中・・・</string>
+    <string name="recommended_skincare_for_you">あなたにオススメのスキンケア</string>
+    <string name="dummy_message_result_one">乾燥させない、うるおい重視のケア</string>
+    <string name="dummy_message_result_two">紫外線は、近年の温暖化によって年々増しているとも言われ\n夏の暑い時期時期だけでなく、年中降り注いでいます。\n紫外線は、太陽の高さに比例し、春から少しずつ量が増加し始めます。\n一般的に紫外線が最も強いのは、夏至（６月）の頃といわれています。\n梅雨のある地域では１ヶ月の送料のピークは５月です。\n肌トラブルを防ぐためには、紫外線量の多い時期はもちろんのこと一年中意識すること</string>
+    <string name="dummy_message_result_three">*1 エイジングケアとは年齢に合わせたお手入れのこと。</string>
+    <string name="recommended_item_for_you">あなたにオススメのアイテムはこちら</string>
+    <string name="recommended_rank">おすすめ度</string>
+    <string name="space" />
+    <string name="dummy_title">独自のセラミド配合でハリ・弾力を体感！敏感肌でもエイジングケアができる優れもる優れも</string>
+    <string name="dummy_item_name">アスタリフトベーシック</string>
+    <string name="dummy_package_name">WEB限定10日間トライアルセット1,100円</string>
+    <string name="text_close">閉じる</string>
+    <string name="point">POINT</string>
+    <string name="text_subheading">▼ QRコードを読み込んで詳細をチェック！ ▼</string>
+    <string name="text_subheading_2">（QRコード読み取り後、公式サイトへ移動します)</string>
+    <string name="text_see_more">詳しく見る</string>
+    <string name="text_main_headline">角層内でうるおいをキープするセラミド</string>
+    <string name="finish_diagnosis">診断を終了する</string>
+    <string name="thank_you">THANK YOU!</string>
+    <string name="my_beauty">My Beautyはあなたのキレイを応援します。</string>
+    <string name="back_to_top_underlined"><u>TOPへ戻る</u></string>
+    <string name="item_name">アスタリフトベーシッ</string>
+    <string name="detail_is_here">詳細はこちら</string>
+    <string name="text_resume_screen_display">画面表示を再開します...</string>
+
+
+</resources>

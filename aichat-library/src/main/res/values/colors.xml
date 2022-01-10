@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorGray">#D3D3D3</color>
+
+    <!-- AI Chat -->
+
+    <color name="aiChatBackground">#f5fafd</color>
+    <color name="blueButtonBackground">#a0b2bc</color>
+    <color name="grayTextColor">#626365</color>
+    <color name="blueTextColor">#a2b0b9</color>
+    <color name="whiteText">#f3fbfe</color>
+    <color name="grayBubbleOutline">#5c5c5c</color>
+    <color name="blueBorder">#d6edfa</color>
+    <color name="grayRecommendation">#cdd2d7</color>
+    <color name="jp_text_gray_color">#5d5d5d</color>
+    <color name="button_pressed">#9ba1ca</color>
+    <color name="question_number_color">#b8bfdd</color>
+    <color name="recommended_rank_background">#f0f1f9</color>
+    <color name="headline_background">#f0f1f9</color>
+    <color name="zxing_transparent">#00000000</color>
+
+
+
+    <!-- AI Chat Text-->
+
+    <!-- AI Chat Button-->
+
+
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/diagnosis_cardView_constraintLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <Button
+        android:id="@+id/chip_one_message_button"
+        android:layout_width="500dp"
+        android:layout_height="fill_parent"
+        android:background="@drawable/chip_button_gradient"
+        android:fontFamily="@font/noto_sans_jp_regular"
+        android:paddingStart="50dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="50dp"
+        android:paddingBottom="10dp"
+        android:text="@string/dummy_chip_message"
+        android:textColor="@color/whiteText"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/chip_two_message_button"
+        android:layout_width="500dp"
+        android:layout_height="fill_parent"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/chip_button_gradient"
+        android:fontFamily="@font/noto_sans_jp_regular"
+        android:paddingStart="50dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="50dp"
+        android:paddingBottom="10dp"
+        android:text="@string/dummy_chip_message"
+        android:textColor="@color/whiteText"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/chip_one_message_button"
+        app:layout_constraintTop_toTopOf="@+id/chip_one_message_button"
+        app:layout_constraintVertical_bias="0.0" />
+
+</LinearLayout>
