@@ -7,7 +7,7 @@ package com.sprobe.aichat_library.utils;
 public class SharedPreferenceConst {
 
     // UUID(平文)
-    public static final String MONOLITHS_UUID_PLAIN_TEXT = "monoliths_uuid_plain_text";
+    public static final String MONOLITHS_DISPLAY_ID_PLAIN_TEXT = "monoliths_uuid_plain_text";
 
     // Counter for question number
     public static final String QUESTION_NUMBER_COUNTER = "question_number_counter";

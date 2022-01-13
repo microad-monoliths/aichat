@@ -23,7 +23,7 @@ import com.sprobe.aichat_library.model.ReplyRequest;
 import com.sprobe.aichat_library.model.ReplyResponse;
 import com.sprobe.aichat_library.ui.adapter.AiChatHostAdapter;
 import com.sprobe.aichat_library.utils.AiChatHelper;
-import com.sprobe.aichat_library.utils.Config;
+import com.sprobe.aichat_library.utils.Constants;
 import com.sprobe.aichat_library.utils.SharedPreferenceUtils;
 
 import org.jetbrains.annotations.NotNull;
@@ -38,7 +38,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-import static com.sprobe.aichat_library.utils.SharedPreferenceConst.MONOLITHS_UUID_PLAIN_TEXT;
+import static com.sprobe.aichat_library.utils.SharedPreferenceConst.MONOLITHS_DISPLAY_ID_PLAIN_TEXT;
 import static com.sprobe.aichat_library.utils.SharedPreferenceConst.QUESTION_NUMBER_COUNTER;
 
 public class AiChatFragment extends Fragment implements AiChatHostAdapter.Callback {
@@ -106,7 +106,7 @@ public class AiChatFragment extends Fragment implements AiChatHostAdapter.Callba
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mPreference = SharedPreferenceUtils.getInstance(getContext());
-        mUUID = mPreference.getStringValue(MONOLITHS_UUID_PLAIN_TEXT, "");
+        mUUID = mPreference.getStringValue(MONOLITHS_DISPLAY_ID_PLAIN_TEXT, "");
         mPreference.setValue(QUESTION_NUMBER_COUNTER, 0);
         mStartPendingIntent = 101;
 
@@ -200,13 +200,13 @@ public class AiChatFragment extends Fragment implements AiChatHostAdapter.Callba
 
         // Set Attributes data
         mAttributes = new FollowRequest.Attributes();
-        mAttributes.setPreferences(Config.AI_CHAT_PREFERENCE);
-        mAttributes.setSegment(Config.AI_CHAT_SEGMENT);
+        mAttributes.setPreferences(Constants.AI_CHAT_PREFERENCE);
+        mAttributes.setSegment(Constants.AI_CHAT_SEGMENT);
 
         // Set User data
         mUser = new FollowRequest.User();
         mUser.setAttributes(mAttributes);
-        mUser.setId(Config.AI_CHAT_USER_ID);
+        mUser.setId(Constants.AI_CHAT_USER_ID);
 
         // Set FollowRequest params
         mEvent = new FollowRequest.Event();
@@ -345,7 +345,7 @@ public class AiChatFragment extends Fragment implements AiChatHostAdapter.Callba
         }
     }
 
-    private ArrayList<ArrayList<FollowResponse.Chips>> chipsToArray(ArrayList<FollowResponse.Chips> chips) {
+    public static ArrayList<ArrayList<FollowResponse.Chips>> chipsToArray(ArrayList<FollowResponse.Chips> chips) {
         Log.d(TAG, "chipsToArray");
         ArrayList<ArrayList<FollowResponse.Chips>> chipsResultList = new ArrayList<>();
         ArrayList<FollowResponse.Chips> chipsResult = new ArrayList<>();

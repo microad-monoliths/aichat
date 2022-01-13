@@ -10,7 +10,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.sprobe.aichat_library.api.AiChatService;
+import com.sprobe.aichat_library.model.FollowResponse;
 import com.sprobe.aichat_library.receiver.StartBroadcastAfterAMinuteReceiver;
+
+import java.util.ArrayList;
 
 import retrofit.RestAdapter;
 
@@ -18,11 +21,11 @@ public class AiChatHelper {
 
     private static final String TAG = AiChatHelper.class.getSimpleName();
 
-    private Fragment mFragment;
+    private static Fragment mFragment;
 
-    private int mUUID;
+    private static String mUUID;
 
-    private int mQuestionNumberCounter;
+    private static int mQuestionNumberCounter;
 
     public static AiChatService getService() {
 
@@ -33,27 +36,27 @@ public class AiChatHelper {
         return restAdapter.create(AiChatService.class);
     }
 
-    public void setFragment(Fragment fragment) {
-        this.mFragment = fragment;
+    public static void setFragment(Fragment fragment) {
+        mFragment = fragment;
     }
 
-    public void setUUID(int UUID) {
+    public static void setUUID(String UUID) {
         mUUID = UUID;
     }
 
-    public int getUUID() {
+    public static String getUUID() {
         return mUUID;
     }
 
-    public void setQuestionNUmberCounter(int counter) {
+    public static void setQuestionNUmberCounter(int counter) {
         mQuestionNumberCounter = counter;
     }
 
-    public int getQuestionNumberCounter() {
+    public static int getQuestionNumberCounter() {
         return mQuestionNumberCounter;
     }
 
-    public void goToAiChatFragment(FragmentManager fragmentManager, int containerViewId, int UUID, Context context) {
+    public static void goToAiChatFragment(FragmentManager fragmentManager, int containerViewId, int UUID, Context context) {
         fragmentManager.beginTransaction()
                 .add(containerViewId, mFragment)
                 .disallowAddToBackStack()
@@ -64,9 +67,9 @@ public class AiChatHelper {
      * 現在の時刻をミリ秒単位で取得する.
      * @return 現在時刻ミリ秒
      */
-    public static long getCurrentTimeMillis() {
+    public static String getCurrentTimeMillis() {
 
-        return System.currentTimeMillis();
+        return String.valueOf(System.currentTimeMillis());
 
     }
 
@@ -97,5 +100,28 @@ public class AiChatHelper {
 
     }
 
+    private ArrayList<ArrayList<FollowResponse.Chips>> chipsToArray(ArrayList<FollowResponse.Chips> chips) {
+        Log.d(TAG, "chipsToArray");
+        ArrayList<ArrayList<FollowResponse.Chips>> chipsResultList = new ArrayList<>();
+        ArrayList<FollowResponse.Chips> chipsResult = new ArrayList<>();
+
+        for (int i = 0; i < chips.size(); i++) {
+            if (chipsResult.size() != 1) {
+                chipsResult.add(chips.get(i));
+                chips.get(i).setSelected(false);
+                if (i + 1 == chips.size()) {
+                    chipsResultList.add(chipsResult);
+                    chipsResult = new ArrayList<>();
+                }
+            } else {
+                chipsResult.add(chips.get(i));
+                chips.get(i).setSelected(false);
+                chipsResultList.add(chipsResult);
+                chipsResult = new ArrayList<>();
+            }
+        }
+
+        return chipsResultList;
+    }
 
 }
