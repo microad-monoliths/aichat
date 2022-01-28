@@ -22,6 +22,10 @@ public class ThankYouAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private ArrayList<ChatModel.ThankYou> mList;
 
+    private int mItemNumberOneImage;
+    private int mItemNumberTwoImage;
+    private int mItemNumberThreeImage;
+
     // Callback
     private Callback mCallback;
 
@@ -88,25 +92,37 @@ public class ThankYouAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             super.onBind(position);
             ChatModel.ThankYou object = mList.get(position);
 
-            if (object.getItemName() != null){
+            if (object.getItemName() != null) {
                 mItemNameTextView.setText(object.getItemName());
             }
-            if (object.getImageUrl() != null){
+            if (object.getImageUrl() != null) {
                 Picasso.get().load(object.getImageUrl()).into(mMainImageImageView);
             }
-            if (object.getQrCodeUrl() != null){
-                Picasso.get().load(object.getImageUrl()).into(mQrCodeImageView);
+            if (object.getQrCodeUrl() != null) {
+                Picasso.get().load(object.getQrCodeUrl()).into(mQrCodeImageView);
             }
 
             switch (position) {
                 case 0:
-                    Picasso.get().load(R.drawable.number_one).into(mQuestionNumberImageView);
+                    if (mItemNumberOneImage != 0) {
+                        Picasso.get().load(mItemNumberOneImage).into(mQuestionNumberImageView);
+                    } else {
+                        Picasso.get().load(R.drawable.number_one).into(mQuestionNumberImageView);
+                    }
                     break;
                 case 1:
-                    Picasso.get().load(R.drawable.number_two).into(mQuestionNumberImageView);
+                    if (mItemNumberTwoImage != 0) {
+                        Picasso.get().load(mItemNumberTwoImage).into(mQuestionNumberImageView);
+                    } else {
+                        Picasso.get().load(R.drawable.number_two).into(mQuestionNumberImageView);
+                    }
                     break;
                 case 2:
-                    Picasso.get().load(R.drawable.number_three).into(mQuestionNumberImageView);
+                    if (mItemNumberThreeImage != 0) {
+                        Picasso.get().load(mItemNumberThreeImage).into(mQuestionNumberImageView);
+                    } else {
+                        Picasso.get().load(R.drawable.number_two).into(mQuestionNumberImageView);
+                    }
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + position);
@@ -114,4 +130,17 @@ public class ThankYouAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         }
     }
+
+    public void setItemNumberOneImage(int image) {
+        this.mItemNumberOneImage = image;
+    }
+
+    public void setItemNumberTwoImage(int image) {
+        this.mItemNumberTwoImage = image;
+    }
+
+    public void setItemNumberThreeImage(int image) {
+        this.mItemNumberThreeImage = image;
+    }
+
 }

@@ -200,13 +200,13 @@ public class AiChatFragment extends Fragment implements AiChatHostAdapter.Callba
 
         // Set Attributes data
         mAttributes = new FollowRequest.Attributes();
-        mAttributes.setPreferences(Constants.AI_CHAT_PREFERENCE);
-        mAttributes.setSegment(Constants.AI_CHAT_SEGMENT);
+        mAttributes.setPreferences(Constants.AI_CHAT_PREFERENCE_VALUE);
+        mAttributes.setSegment(Constants.AI_CHAT_SEGMENT_VALUE);
 
         // Set User data
         mUser = new FollowRequest.User();
         mUser.setAttributes(mAttributes);
-        mUser.setId(Constants.AI_CHAT_USER_ID);
+        mUser.setId(Constants.AI_CHAT_USER_ID_VALUE);
 
         // Set FollowRequest params
         mEvent = new FollowRequest.Event();

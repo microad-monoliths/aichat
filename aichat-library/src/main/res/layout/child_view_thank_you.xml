@@ -6,7 +6,7 @@
     android:paddingBottom="50dp">
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/title_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100sp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/subtitle_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"
@@ -27,9 +27,9 @@
         android:text="@string/my_beauty"
         android:textColor="@color/jp_text_gray_color"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView14"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintEnd_toEndOf="@+id/title_textView"
+        app:layout_constraintStart_toStartOf="@+id/title_textView"
+        app:layout_constraintTop_toBottomOf="@+id/title_textView" />
 
     <TextView
         android:id="@+id/backToTop_textView"
@@ -41,9 +41,9 @@
         android:text="@string/back_to_top_underlined"
         android:textColor="@color/button_pressed"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView15"
-        app:layout_constraintStart_toStartOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintEnd_toEndOf="@+id/subtitle_textView"
+        app:layout_constraintStart_toStartOf="@+id/subtitle_textView"
+        app:layout_constraintTop_toBottomOf="@+id/subtitle_textView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/thankYou_recyclerview"

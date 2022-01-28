@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.sprobe.aichat">
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> <!-- インターネットパーミッション -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 外部ストレージ read/write -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 予備 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PHONE_STATE_PERMISSION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.BODY_SENSORS" /> <!-- 位置情報 -->
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.ACCESS_COARSE_LOCATION"
+        tools:node="remove" /> <!-- UUID取得用コンテンツプロバイダー -->
+    <uses-permission android:name="jp.microad.monoliths_uuid_android.READ_DATABASE" />
+    <uses-permission android:name="jp.microad.monoliths_uuid_android.WRITE_DATABASE" /> <!-- Active Apps/ Reorder Apps button -->
+    <!-- <uses-permission android:name="android.permission.REAL_GET_TASKS"/> -->
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -8,7 +34,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AiChat">
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.Design.NoActionBar">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

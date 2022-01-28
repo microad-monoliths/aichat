@@ -30,7 +30,7 @@ public class AiChatHelper {
     public static AiChatService getService() {
 
         RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(Config.BASE_URL)
-                .setLogLevel(RestAdapter.LogLevel.NONE)
+                .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
 
         return restAdapter.create(AiChatService.class);

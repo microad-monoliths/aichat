@@ -4,21 +4,17 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.sprobe.aichat_library.model.FollowRequest;
-import com.sprobe.aichat_library.model.FollowResponse;
 import com.sprobe.aichat_library.ui.view.ChatView;
-import com.sprobe.aichat_library.utils.AiChatHelper;
 import com.sprobe.aichat_library.utils.SharedPreferenceUtils;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-
-import static com.sprobe.aichat_library.utils.Constants.AI_CHAT_PREFERENCE;
-import static com.sprobe.aichat_library.utils.Constants.AI_CHAT_SEGMENT;
-import static com.sprobe.aichat_library.utils.Constants.AI_CHAT_USER_ID;
+import static com.sprobe.aichat_library.utils.Constants.AI_CHAT_PREFERENCE_VALUE;
+import static com.sprobe.aichat_library.utils.Constants.AI_CHAT_SEGMENT_VALUE;
+import static com.sprobe.aichat_library.utils.Constants.AI_CHAT_USER_ID_VALUE;
+import static com.sprobe.aichat_library.utils.Constants.MONOLITHS_DISPLAY_ID_PLAIN_TEXT_VALUE;
+import static com.sprobe.aichat_library.utils.SharedPreferenceConst.AI_CHAT_PREFERENCE;
+import static com.sprobe.aichat_library.utils.SharedPreferenceConst.AI_CHAT_SEGMENT;
+import static com.sprobe.aichat_library.utils.SharedPreferenceConst.AI_CHAT_USER_ID;
 import static com.sprobe.aichat_library.utils.SharedPreferenceConst.MONOLITHS_DISPLAY_ID_PLAIN_TEXT;
-import static com.sprobe.aichat_library.utils.SharedPreferenceConst.QUESTION_NUMBER_COUNTER;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,48 +27,44 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferenceUtils mPreference = SharedPreferenceUtils.getInstance(this);
 
-        mPreference.setValue(MONOLITHS_DISPLAY_ID_PLAIN_TEXT, "317493dc-f597-4f1e-a764-9b258e1ffee8");
-
-        mPreference.setValue(QUESTION_NUMBER_COUNTER, 0);
+        mPreference.setValue(MONOLITHS_DISPLAY_ID_PLAIN_TEXT, MONOLITHS_DISPLAY_ID_PLAIN_TEXT_VALUE);
+        mPreference.setValue(AI_CHAT_PREFERENCE, AI_CHAT_PREFERENCE_VALUE);
+        mPreference.setValue(AI_CHAT_SEGMENT, AI_CHAT_SEGMENT_VALUE);
+        mPreference.setValue(AI_CHAT_USER_ID, AI_CHAT_USER_ID_VALUE);
 
         chatView = findViewById(R.id.chatView);
 
-        chatView.setOnCLickBackToTopButtonListener(new ChatView.OnCLickBackToTopButtonListener() {
-            @Override
-            public void onBackToTopButtonClick(int position) {
-
-            }
-        });
-
-        FollowRequest.Attributes attributes = new FollowRequest.Attributes();
-        attributes.setPreferences(AI_CHAT_PREFERENCE);
-        attributes.setSegment(AI_CHAT_SEGMENT);
-
-        FollowRequest.User user = new FollowRequest.User();
-        user.setAttributes(attributes);
-        user.setId(AI_CHAT_USER_ID);
-
-        FollowRequest.Event eventRequest = new FollowRequest.Event();
-        eventRequest.setTimestamp(AiChatHelper.getCurrentTimeMillis());
-        eventRequest.setUser(user);
-
-        FollowRequest request = new FollowRequest();
-        request.setEvent(eventRequest);
-
-        //For monolith and tico's case DISPLAY ID is used in the Follow API parameter originalPlatformId
-        request.setOriginalPlatformId(mPreference.getStringValue(MONOLITHS_DISPLAY_ID_PLAIN_TEXT, null));
-
-        AiChatHelper.getService().follow(request, new Callback<FollowResponse>() {
-            @Override
-            public void success(FollowResponse followResponse, Response response) {
-
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-
-            }
-        });
+//        chatView.setFirstLeftImage(R.drawable.clear_image);
+//        chatView.doAnimateView(false);
+//        chatView.setHeaderText("Hello World");
+//        chatView.setBigTitleText("Hello World");
+//        chatView.setSubtitleOneText("Hello World");
+//        chatView.setSubtitleTwoText("Hello World");
+//        chatView.setLogoImage(R.drawable.arrow_icon);
+//        chatView.setStartButtonGradient(getResources().getDrawable(R.drawable.chip_button_gradient_normal, null));
+//        chatView.setChipGradient(getResources().getDrawable(R.drawable.chip_button_gradient_normal, null));
+        /*Typeface typeface = ResourcesCompat.getFont(this, R.font.academy_engraved_std_regular);
+        chatView.setChipFont(typeface);*/
+//        chatView.setChipTextSize(15f);
+        /*Typeface typeface = ResourcesCompat.getFont(this, R.font.noto_sans_jp_regular);
+        chatView.setQuestionNumberFont(typeface);*/
+        /*Typeface typeface = ResourcesCompat.getFont(this, R.font.noto_sans_jp_regular);
+        chatView.setTextFont(typeface);*/
+//        chatView.setLoadingText("Hello World");
+//       chatView.setSkincareImage(R.drawable.astalift_image_new);
+//        chatView.setRatingBarColor(ContextCompat.getColor(this, R.color.black));
+//        chatView.setRatingBackgroundColor(getDrawable(R.color.black));
+//        chatView.setItemNumberOneImage(R.drawable.arrow_icon);
+//        chatView.setItemNumberThreeImage(R.drawable.arrow_icon);
+//        chatView.setItemNumberTwoImage(R.drawable.arrow_icon);
+//        chatView.setFinalButtonColor(getResources().getDrawable(R.drawable.chip_button_gradient_normal, null));
+//        chatView.setFinalButtonText("Finish Hello World");
+//        chatView.setThankYouTitleText("Thank You Hello World!");
+//        chatView.setThankYouSubtitleText("Bye bye");
+        /*Typeface typeface = ResourcesCompat.getFont(this, R.font.noto_sans_jp_regular);
+        chatView.setThankYouTitleFont(typeface);
+        Typeface typeface1 = ResourcesCompat.getFont(this, R.font.academy_engraved_std_regular);
+        chatView.setThankYouSubtitleFont(typeface1);*/
 
     }
 }

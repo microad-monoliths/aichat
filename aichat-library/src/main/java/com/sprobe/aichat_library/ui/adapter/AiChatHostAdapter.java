@@ -5,7 +5,9 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.os.Parcelable;
+import android.content.res.ColorStateList;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,7 +39,6 @@ import org.jetbrains.annotations.NotNull;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 
-
 import static android.view.View.TRANSLATION_Y;
 
 public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
@@ -52,11 +53,51 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private ArrayList<ChatModel> mChatList;
 
+    // Start Screen
+    private int mFirstLeftImage;
+    private int mSecondLeftImage;
+    private int mThirdLeftImage;
+    private int mFirstRightImage;
+    private int mSecondRightImage;
+    private int mThirdRightImage;
+    private boolean mAnimate = true;
+    private String mHeaderText = null;
+    private String mBigTitleText = null;
+    private String mSubtitleOneText = null;
+    private String mSubtitleTwoText = null;
+    private Drawable mStartButtonGradient;
+
+    // Diagnosis Screen
+    private Drawable mChipGradient;
+    private Typeface mChipTypeFace;
+    private float mChipTextSize = 0;
+    private Typeface mQuestionNumberTypeface;
+    private Typeface mTextTypeface;
+
+    // Loading Screen
+    private String mLoadingText = null;
+
+    // Recommended Skincare Screen
+    private int mSkincareImage;
+
+    // Recommended Items Screen
+    private int mRatingPrimaryColor = 0;
+    private Drawable mRatingBackgroundColor;
+    private int mItemNumberOneImage;
+    private int mItemNumberTwoImage;
+    private int mItemNumberThreeImage;
+
+    // Final Button
+    private String mFinalText = null;
+    private Drawable mFinalColor;
+
+    // Thank You Screen
+    private String mThankYouTitleText = null;
+    private String mThankYouSubtitleText = null;
+    private Typeface mThankYouTitleFont;
+    private Typeface mThankYouSubtitleFont;
+
     private Context mContext;
-
-    private int mPosition = 0;
-
-    private Parcelable recyclerViewState;
 
     // Callback
     private Callback mCallback;
@@ -190,6 +231,14 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         long mLastClickTime = 0;
 
+        TextView mHeaderTextView;
+
+        TextView mBigTitleTextView;
+
+        TextView mSubtitleOneTextView;
+
+        TextView mSubtitleTwoTextView;
+
         public VHTitle(View itemView) {
             super(itemView);
 
@@ -201,13 +250,19 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             mAstaLiftImageView = itemView.findViewById(R.id.astalift_imageView);
             mClearImageView = itemView.findViewById(R.id.clear_imageView);
             mOrbisUdImageView = itemView.findViewById(R.id.orbis_ud_imageView);
+            mHeaderTextView = itemView.findViewById(R.id.header_textView);
+            mBigTitleTextView = itemView.findViewById(R.id.bigTitle_textView);
+            mSubtitleOneTextView = itemView.findViewById(R.id.subTitleOne_textView);
+            mSubtitleTwoTextView = itemView.findViewById(R.id.subTitleTwo_textView);
 
-            animateObject(mDuoImageView, 0);
-            animateObject(mOrbisImageView, 700);
-            animateObject(mDecenciaImageView, 300);
-            animateObject(mAstaLiftImageView, 500);
-            animateObject(mClearImageView, 0);
-            animateObject(mOrbisUdImageView, 1000);
+            if (mAnimate) {
+                animateObject(mDuoImageView, 0);
+                animateObject(mOrbisImageView, 700);
+                animateObject(mDecenciaImageView, 300);
+                animateObject(mAstaLiftImageView, 500);
+                animateObject(mClearImageView, 0);
+                animateObject(mOrbisUdImageView, 1000);
+            }
 
         }
 
@@ -238,6 +293,50 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             mLayout.setOnClickListener(v -> {
                 mCallback.updateLastTimeClicked();
             });
+
+            if (mFirstLeftImage != 0) {
+                Picasso.get().load(mFirstLeftImage).into(mDuoImageView);
+            }
+
+            if (mSecondLeftImage != 0) {
+                Picasso.get().load(mSecondLeftImage).into(mOrbisImageView);
+            }
+
+            if (mThirdLeftImage != 0) {
+                Picasso.get().load(mThirdLeftImage).into(mDecenciaImageView);
+            }
+
+            if (mFirstRightImage != 0) {
+                Picasso.get().load(mFirstRightImage).into(mAstaLiftImageView);
+            }
+
+            if (mSecondRightImage != 0) {
+                Picasso.get().load(mSecondRightImage).into(mClearImageView);
+            }
+
+            if (mThirdRightImage != 0) {
+                Picasso.get().load(mThirdRightImage).into(mOrbisUdImageView);
+            }
+
+            if (mHeaderText != null) {
+                mHeaderTextView.setText(mHeaderText);
+            }
+
+            if (mBigTitleText != null) {
+                mBigTitleTextView.setText(mBigTitleText);
+            }
+
+            if (mSubtitleOneText != null) {
+                mSubtitleOneTextView.setText(mSubtitleOneText);
+            }
+
+            if (mSubtitleTwoText != null) {
+                mSubtitleTwoTextView.setText(mSubtitleTwoText);
+            }
+
+            if (mStartButtonGradient != null) {
+                mStartBtn.setBackground(mStartButtonGradient);
+            }
         }
 
         private void animateObject(ImageView imageView, long delay) {
@@ -320,18 +419,33 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             }
 
             mQuestionNumber.setText(MessageFormat.format("Q{0}", object.getQuestionNumber()));
-
             mLayout.setOnClickListener(v -> mCallback.updateLastTimeClicked());
             mDiagnosisAdaptor = new DiagnosisAdapter(object.getMessageId(), object.getType(), position);
             mDiagnosisAdaptor.addItems(object.getChips());
             mDiagnosisAdaptor.setCallback(this);
             mDiagnosisAdaptor.setContext(mContext);
+            if (mChipGradient != null) {
+                mDiagnosisAdaptor.setChipGradient(mChipGradient);
+            }
+            if (mChipTypeFace != null) {
+                mDiagnosisAdaptor.setChipTypeface(mChipTypeFace);
+            }
+            if (mChipTextSize != 0) {
+                mDiagnosisAdaptor.setChipTextSize(mChipTextSize);
+            }
             GridLayoutManager mLayoutManager = new GridLayoutManager(mChipRecyclerView.getContext(), 1);
             mLayoutManager.setStackFromEnd(false);
             mChipRecyclerView.setLayoutManager(mLayoutManager);
             mChipRecyclerView.setItemAnimator(new DefaultItemAnimator());
             mChipRecyclerView.setAdapter(mDiagnosisAdaptor);
             mDiagnosisAdaptor.notifyItemInserted(object.getChips().size());
+
+            if (mQuestionNumberTypeface != null) {
+                mQuestionNumber.setTypeface(mQuestionNumberTypeface);
+            }
+            if (mTextTypeface != null) {
+                mMessage.setTypeface(mTextTypeface);
+            }
         }
 
         @Override
@@ -348,8 +462,13 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
             // Send Reply Request
             // Reply Request Event
+
+            ReplyRequest.Chip chip = new ReplyRequest.Chip();
+            chip.setId(chips.getId());
+            chip.setText(chips.getText());
+
             ReplyRequest.Event event = new ReplyRequest.Event();
-            event.setChip(chips);
+            event.setChip(chip);
             event.setMessageId(messageId);
             event.setType(type);
 
@@ -374,6 +493,8 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         TextView mResultItemTextView;
 
+        ImageView mSkincareImageView;
+
         public VHRecommendation(View itemView) {
             super(itemView);
 
@@ -384,6 +505,7 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             mResultOneTextView = itemView.findViewById(R.id.result_one_textView);
             mResultTwoTextView = itemView.findViewById(R.id.result_two_textView);
             mResultItemTextView = itemView.findViewById(R.id.titleResult_textView);
+            mSkincareImageView = itemView.findViewById(R.id.mainImage_imageView);
 
         }
 
@@ -392,10 +514,19 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             super.onBind(position);
             ChatModel object = mChatList.get(position);
 
+            if (mLoadingText != null) {
+                mLoadingTextView.setText(mLoadingText);
+            }
+
             if (object.getMessagesList() == null) {
                 mProgressBar.setVisibility(View.VISIBLE);
                 mLoadingTextView.setVisibility(View.VISIBLE);
             } else {
+
+                if (mSkincareImage != 0) {
+                    Picasso.get().load(mSkincareImage).into(mSkincareImageView);
+                }
+
                 if (object.getMessagesList() != null) {
                     mResultOneTextView.setText(object.getMessagesList().get(0).getText());
                 }
@@ -428,6 +559,10 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         RatingBar mRecommendationScoreBar;
 
+        TextView mRatingTextView;
+
+        ConstraintLayout mRatingBarLayout;
+
         ImageView mMainImageImageView;
 
         ImageView mQuestionNumberImageView;
@@ -455,6 +590,8 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             mItemNameTextView = itemView.findViewById(R.id.itemName_textView);
             mPackageNameTextView = itemView.findViewById(R.id.packageName_textView);
             mRecommendationScoreBar = itemView.findViewById(R.id.rating_bar);
+            mRatingTextView = itemView.findViewById(R.id.ratingText_textView);
+            mRatingBarLayout = itemView.findViewById(R.id.ratingBar_layout);
             mMainImageImageView = itemView.findViewById(R.id.mainImage_imageView);
             mQuestionNumberImageView = itemView.findViewById(R.id.questionNumber_imageView);
             mCloseButton = itemView.findViewById(R.id.close_button);
@@ -511,13 +648,25 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
                 switch (object.getRecommendationItem().getOrder()) {
                     case 0:
-                        Picasso.get().load(R.drawable.number_one).into(mQuestionNumberImageView);
+                        if (mItemNumberOneImage != 0) {
+                            Picasso.get().load(mItemNumberOneImage).into(mQuestionNumberImageView);
+                        } else {
+                            Picasso.get().load(R.drawable.number_one).into(mQuestionNumberImageView);
+                        }
                         break;
                     case 1:
-                        Picasso.get().load(R.drawable.number_two).into(mQuestionNumberImageView);
+                        if (mItemNumberTwoImage != 0) {
+                            Picasso.get().load(mItemNumberTwoImage).into(mQuestionNumberImageView);
+                        } else {
+                            Picasso.get().load(R.drawable.number_two).into(mQuestionNumberImageView);
+                        }
                         break;
                     case 2:
-                        Picasso.get().load(R.drawable.number_three).into(mQuestionNumberImageView);
+                        if (mItemNumberThreeImage != 0) {
+                            Picasso.get().load(mItemNumberThreeImage).into(mQuestionNumberImageView);
+                        } else {
+                            Picasso.get().load(R.drawable.number_two).into(mQuestionNumberImageView);
+                        }
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + position);
@@ -557,6 +706,16 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     notifyDataSetChanged();
                     mCallback.updateLastTimeClicked();
                 });
+
+                if (mRatingPrimaryColor != 0) {
+                    mRatingTextView.setTextColor(mRatingPrimaryColor);
+                    mRecommendationScoreBar.setProgressTintList(ColorStateList.valueOf(mRatingPrimaryColor));
+                    mRecommendationScoreBar.setSecondaryProgressTintList(ColorStateList.valueOf(mRatingPrimaryColor));
+                }
+
+                /*if (mRatingBackgroundColor != null) {
+                    mRatingBarLayout.setBackground(mRatingBackgroundColor);
+                }*/
             }
         }
     }
@@ -591,6 +750,14 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 mCallback.onFinishClicked();
                 mCallback.updateLastTimeClicked();
             });
+
+            if (mFinalText != null) {
+                mFinishButton.setText(mFinalText);
+            }
+
+            if (mFinalColor != null) {
+                mFinishButton.setBackground(mFinalColor);
+            }
         }
     }
 
@@ -602,11 +769,17 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         ThankYouAdapter mAdapter;
 
+        TextView mTitleTextView;
+
+        TextView mSubtitleTextView;
+
         public VHThankYou(View itemView) {
             super(itemView);
 
             mRecyclerView = itemView.findViewById(R.id.thankYou_recyclerview);
             mBackToTopTextView = itemView.findViewById(R.id.backToTop_textView);
+            mTitleTextView = itemView.findViewById(R.id.title_textView);
+            mSubtitleTextView = itemView.findViewById(R.id.subtitle_textView);
         }
 
         @Override
@@ -623,6 +796,15 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             mAdapter = new ThankYouAdapter();
             mAdapter.addItems(object.getThankYouList());
             mAdapter.setCallback(this);
+            if (mItemNumberOneImage != 0) {
+                mAdapter.setItemNumberOneImage(mItemNumberOneImage);
+            }
+            if (mItemNumberTwoImage != 0) {
+                mAdapter.setItemNumberTwoImage(mItemNumberTwoImage);
+            }
+            if (mItemNumberThreeImage != 0) {
+                mAdapter.setItemNumberThreeImage(mItemNumberThreeImage);
+            }
             LinearLayoutManager mLayoutManager = new LinearLayoutManager(mRecyclerView.getContext(), LinearLayoutManager.HORIZONTAL, false);
             mRecyclerView.setLayoutManager(mLayoutManager);
             mRecyclerView.setNestedScrollingEnabled(false);
@@ -635,6 +817,148 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 mCallback.updateLastTimeClicked();
             });
 
+            if (mThankYouTitleText != null) {
+                mTitleTextView.setText(mThankYouTitleText);
+            }
+
+            if (mThankYouSubtitleText != null) {
+                mSubtitleTextView.setText(mThankYouSubtitleText);
+            }
+
+            if (mThankYouTitleFont != null) {
+                mTitleTextView.setTypeface(mThankYouTitleFont);
+            }
+
+            if (mThankYouSubtitleFont != null) {
+                mSubtitleTextView.setTypeface(mThankYouSubtitleFont);
+            }
+
         }
+    }
+
+    public void setFirstLeftImage(int drawable) {
+        this.mFirstLeftImage = drawable;
+    }
+
+    public void setSecondLeftImage(int drawable) {
+        this.mSecondLeftImage = drawable;
+    }
+
+    public void setThirdLeftImage(int drawable) {
+        this.mThirdLeftImage = drawable;
+    }
+
+    public void setFirstRightImage(int drawable) {
+        this.mFirstRightImage = drawable;
+    }
+
+    public void setSecondRightImage(int drawable) {
+        this.mSecondRightImage = drawable;
+    }
+
+    public void setThirdRightImage(int drawable) {
+        this.mThirdRightImage = drawable;
+    }
+
+    public void doAnimateView(boolean animate) {
+        this.mAnimate = animate;
+    }
+
+    public void setHeaderText(String header) {
+        this.mHeaderText = header;
+    }
+
+    public void setBigTitleText(String bigTitle) {
+        this.mBigTitleText = bigTitle;
+    }
+
+    public void setSubtitleOneText(String subtitle) {
+        this.mSubtitleOneText = subtitle;
+    }
+
+    public void setSubtitleTwoText(String subtitle) {
+        this.mSubtitleTwoText = subtitle;
+    }
+
+    public void setStartButtonGradient(Drawable gradient) {
+        this.mStartButtonGradient = gradient;
+    }
+
+    // Diagnosis Screen
+    public void setChipGradient(Drawable gradient) {
+        this.mChipGradient = gradient;
+    }
+
+    public void setChipFont(Typeface typeface) {
+        this.mChipTypeFace = typeface;
+    }
+
+    public void setChipSize(float size) {
+        this.mChipTextSize = size;
+    }
+
+    public void setQuestionNumberFont(Typeface typeface) {
+        this.mQuestionNumberTypeface = typeface;
+    }
+
+    public void setTextFont(Typeface typeface) {
+        this.mTextTypeface = typeface;
+    }
+
+    // Loading Screen
+    public void setLoadingText(String text) {
+        this.mLoadingText = text;
+    }
+
+    // Recommended SkinCare Screen
+    public void setSkincareImage(int id) {
+        this.mSkincareImage = id;
+    }
+
+    // Recommended Items Screen
+    public void setRatingColor(int primary) {
+        this.mRatingPrimaryColor = primary;
+    }
+
+    public void setRatingBackgroundColor(Drawable background) {
+        this.mRatingBackgroundColor = background;
+    }
+
+    public void setItemNumberOneImage(int image) {
+        this.mItemNumberOneImage = image;
+    }
+
+    public void setItemNumberTwoImage(int image) {
+        this.mItemNumberTwoImage = image;
+    }
+
+    public void setItemNumberThreeImage(int image) {
+        this.mItemNumberThreeImage = image;
+    }
+
+    // Final Button
+    public void setFinalButtonText(String text) {
+        this.mFinalText = text;
+    }
+
+    public void setFinalButtonColor(Drawable drawable) {
+        this.mFinalColor = drawable;
+    }
+
+    // Thank You Screen
+    public void setThankYouTitleText(String text) {
+        this.mThankYouTitleText = text;
+    }
+
+    public void setThankYouSubtitleText(String text) {
+        this.mThankYouSubtitleText = text;
+    }
+
+    public void setThankYouTitleFont(Typeface typeface) {
+        this.mThankYouTitleFont = typeface;
+    }
+
+    public void setThankYouSubtitleFont(Typeface typeface) {
+        this.mThankYouSubtitleFont = typeface;
     }
 }

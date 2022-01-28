@@ -1,6 +1,8 @@
 package com.sprobe.aichat_library.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,6 +42,12 @@ public class DiagnosisAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private final int mChipPosition;
 
     private long mLastClickTime = 0;
+
+    private Drawable mChipGradient;
+
+    private Typeface mChipTypeface;
+
+    private float mChipTextSize = 0;
 
     // Callback
     private Callback mCallback;
@@ -144,6 +152,18 @@ public class DiagnosisAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     mCallback.onItemClick(mChips, object.get(0), mMessageId, mType, mChipPosition);
                 }
             });
+
+            if (mChipGradient != null) {
+                mChipMessageButton.setBackground(mChipGradient);
+            }
+
+            if (mChipTypeface != null){
+                mChipMessageButton.setTypeface(mChipTypeface);
+            }
+
+            if (mChipTextSize != 0){
+                mChipMessageButton.setTextSize(mChipTextSize);
+            }
         }
     }
 
@@ -211,6 +231,34 @@ public class DiagnosisAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 }
             });
 
+            if (mChipGradient != null) {
+                mChip1MessageButton.setBackground(mChipGradient);
+                mChip2MessageButton.setBackground(mChipGradient);
+            }
+
+            if (mChipTypeface != null){
+                mChip1MessageButton.setTypeface(mChipTypeface);
+                mChip2MessageButton.setTypeface(mChipTypeface);
+            }
+
+            if (mChipTextSize != 0){
+                mChip1MessageButton.setTextSize(mChipTextSize);
+                mChip2MessageButton.setTextSize(mChipTextSize);
+            }
+
         }
     }
+
+    public void setChipGradient(Drawable gradient) {
+        this.mChipGradient = gradient;
+    }
+
+    public void setChipTypeface(Typeface typeface){
+        this.mChipTypeface = typeface;
+    }
+
+    public void setChipTextSize(float size){
+        this.mChipTextSize = size;
+    }
+
 }

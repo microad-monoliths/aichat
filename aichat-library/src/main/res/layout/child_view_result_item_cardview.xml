@@ -78,13 +78,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="43dp"
             android:fontFamily="@font/noto_sans_jp_medium"
             android:text="@string/dummy_package_name"
             android:textColor="@color/button_pressed"
             android:textSize="20sp"
             card_view:layout_constraintStart_toEndOf="@+id/mainImage_imageView"
-            card_view:layout_constraintTop_toBottomOf="@+id/view" />
+            card_view:layout_constraintTop_toBottomOf="@+id/itemName_textView" />
 
         <include
             layout="@layout/child_view_result_item_expandable_list"

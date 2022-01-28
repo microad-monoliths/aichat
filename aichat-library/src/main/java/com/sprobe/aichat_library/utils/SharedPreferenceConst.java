@@ -6,10 +6,15 @@ package com.sprobe.aichat_library.utils;
 
 public class SharedPreferenceConst {
 
-    // UUID(平文)
+    // Follow API Request Original Platform ID
     public static final String MONOLITHS_DISPLAY_ID_PLAIN_TEXT = "monoliths_uuid_plain_text";
-
-    // Counter for question number
+    // Follow API Request Preference
+    public static final String AI_CHAT_PREFERENCE = "ai_chat_preference";
+    // Follow API Request Segment
+    public static final String AI_CHAT_SEGMENT = "ai_chat_segment";
+    // Follow API Request User ID
+    public static final String AI_CHAT_USER_ID = "ai_chat_user_id";
+    //Question Number Counter
     public static final String QUESTION_NUMBER_COUNTER = "question_number_counter";
 
 }

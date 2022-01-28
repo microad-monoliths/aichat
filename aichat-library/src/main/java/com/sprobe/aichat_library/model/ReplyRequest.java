@@ -1,5 +1,6 @@
 package com.sprobe.aichat_library.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ReplyRequest {
@@ -25,7 +26,7 @@ public class ReplyRequest {
         private FollowRequest.User user;
 
         @SerializedName("chip")
-        private FollowResponse.Chips chip;
+        private Chip chip;
 
         public String getTimestamp() {
             return timestamp;
@@ -59,14 +60,40 @@ public class ReplyRequest {
             this.user = user;
         }
 
-        public FollowResponse.Chips getChip() {
+        public Chip getChip() {
             return chip;
         }
 
-        public void setChip(FollowResponse.Chips chip) {
+        public void setChip(Chip chip) {
             this.chip = chip;
         }
     }
+
+    public static class Chip{
+
+        @SerializedName("id")
+        private String id;
+
+        @SerializedName("text")
+        private String text;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
+    }
+
 
     public String getOriginalPlatformId() {
         return originalPlatformId;

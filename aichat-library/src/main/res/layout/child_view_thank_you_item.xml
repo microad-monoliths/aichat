@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="37dp"
         android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,6 +21,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
+            android:background="@android:color/white"
             android:layout_height="wrap_content">
 
             <TextView
@@ -29,17 +31,18 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
+                android:maxWidth="250dp"
                 android:text="@string/item_name"
                 android:textColor="@color/jp_text_gray_color"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageUrl_imageView"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:scaleType="centerCrop"
@@ -59,7 +62,7 @@
                 android:text="@string/detail_is_here"
                 android:textAlignment="center"
                 android:textColor="@color/button_pressed"
-                android:textSize="15sp"
+                android:textSize="10sp"
                 app:layout_constraintEnd_toStartOf="@+id/right_vertical"
                 app:layout_constraintStart_toEndOf="@+id/imageUrl_imageView"
                 app:layout_constraintTop_toBottomOf="@+id/itemName_textView" />
@@ -76,15 +79,14 @@
 
             <ImageView
                 android:id="@+id/qrCode_imageView"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/qr_code_sample"
                 app:layout_constraintBottom_toBottomOf="@+id/imageUrl_imageView"
                 app:layout_constraintEnd_toEndOf="@+id/textView16"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView16"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintHorizontal_bias="0.55"
+                app:layout_constraintStart_toStartOf="@+id/textView16" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/left_vertical"
