@@ -25,10 +25,10 @@
             android:src="@drawable/skincare_girl"
             card_view:layout_constraintBottom_toBottomOf="@+id/packageName_textView"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/include" />
+            card_view:layout_constraintTop_toTopOf="@+id/ratingBar_layout" />
 
         <include
-            android:id="@+id/include"
+            android:id="@+id/ratingBar_layout"
             layout="@layout/child_view_rating_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             android:textColor="@color/jp_text_gray_color"
             android:textSize="28sp"
             card_view:layout_constraintStart_toEndOf="@+id/mainImage_imageView"
-            card_view:layout_constraintTop_toBottomOf="@+id/include" />
+            card_view:layout_constraintTop_toBottomOf="@+id/ratingBar_layout" />
 
         <View
             android:id="@+id/view"

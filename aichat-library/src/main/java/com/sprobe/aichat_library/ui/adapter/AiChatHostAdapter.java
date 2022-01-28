@@ -713,9 +713,9 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     mRecommendationScoreBar.setSecondaryProgressTintList(ColorStateList.valueOf(mRatingPrimaryColor));
                 }
 
-                /*if (mRatingBackgroundColor != null) {
+                if (mRatingBackgroundColor != null) {
                     mRatingBarLayout.setBackground(mRatingBackgroundColor);
-                }*/
+                }
             }
         }
     }
