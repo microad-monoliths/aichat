@@ -38,7 +38,9 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+import static com.sprobe.aichat_library.utils.Constants.ORIGINAL_PLATFORM_ID_TEXT_VALUE;
 import static com.sprobe.aichat_library.utils.SharedPreferenceConst.MONOLITHS_DISPLAY_ID_PLAIN_TEXT;
+import static com.sprobe.aichat_library.utils.SharedPreferenceConst.ORIGINAL_PLATFORM_ID;
 import static com.sprobe.aichat_library.utils.SharedPreferenceConst.QUESTION_NUMBER_COUNTER;
 
 public class AiChatFragment extends Fragment implements AiChatHostAdapter.Callback {
@@ -215,7 +217,7 @@ public class AiChatFragment extends Fragment implements AiChatHostAdapter.Callba
 
         FollowRequest followRequest = new FollowRequest();
         followRequest.setEvent(mEvent);
-        followRequest.setOriginalPlatformId(mUUID);
+        followRequest.setOriginalPlatformId(mPreference.getStringValue(ORIGINAL_PLATFORM_ID, ORIGINAL_PLATFORM_ID_TEXT_VALUE));
 
         Log.d(TAG, "Follow Request Preferences: " + mAttributes.getPreferences());
         Log.d(TAG, "Follow Request Segment: " + mAttributes.getSegment());
@@ -381,7 +383,7 @@ public class AiChatFragment extends Fragment implements AiChatHostAdapter.Callba
 
         ReplyRequest request = new ReplyRequest();
         request.setEvent(event);
-        request.setOriginalPlatformId(mUUID);
+        request.setOriginalPlatformId(mPreference.getStringValue(ORIGINAL_PLATFORM_ID, null));
         AiChatHelper.lastTimeClicked(mContext, mStartPendingIntent);
 //        sendReplyAPI(request);
 

@@ -68,6 +68,9 @@ public class FollowRequest {
         @SerializedName("segment")
         private String segment;
 
+        @SerializedName("deviceId")
+        private String deviceId;
+
         public String getPreferences() {
             return preferences;
         }
@@ -82,6 +85,14 @@ public class FollowRequest {
 
         public void setSegment(String segment) {
             this.segment = segment;
+        }
+
+        public String getDeviceId() {
+            return deviceId;
+        }
+
+        public void setDeviceId(String deviceId) {
+            this.deviceId = deviceId;
         }
     }
 

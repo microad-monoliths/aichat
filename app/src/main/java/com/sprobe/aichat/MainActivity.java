@@ -10,11 +10,13 @@ import com.sprobe.aichat_library.utils.SharedPreferenceUtils;
 import static com.sprobe.aichat_library.utils.Constants.AI_CHAT_PREFERENCE_VALUE;
 import static com.sprobe.aichat_library.utils.Constants.AI_CHAT_SEGMENT_VALUE;
 import static com.sprobe.aichat_library.utils.Constants.AI_CHAT_USER_ID_VALUE;
-import static com.sprobe.aichat_library.utils.Constants.MONOLITHS_DISPLAY_ID_PLAIN_TEXT_VALUE;
+import static com.sprobe.aichat_library.utils.Constants.DEVICE_ID_TEXT_VALUE;
+import static com.sprobe.aichat_library.utils.Constants.ORIGINAL_PLATFORM_ID_TEXT_VALUE;
 import static com.sprobe.aichat_library.utils.SharedPreferenceConst.AI_CHAT_PREFERENCE;
 import static com.sprobe.aichat_library.utils.SharedPreferenceConst.AI_CHAT_SEGMENT;
 import static com.sprobe.aichat_library.utils.SharedPreferenceConst.AI_CHAT_USER_ID;
-import static com.sprobe.aichat_library.utils.SharedPreferenceConst.MONOLITHS_DISPLAY_ID_PLAIN_TEXT;
+import static com.sprobe.aichat_library.utils.SharedPreferenceConst.DEVICE_ID;
+import static com.sprobe.aichat_library.utils.SharedPreferenceConst.ORIGINAL_PLATFORM_ID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,10 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferenceUtils mPreference = SharedPreferenceUtils.getInstance(this);
 
-        mPreference.setValue(MONOLITHS_DISPLAY_ID_PLAIN_TEXT, MONOLITHS_DISPLAY_ID_PLAIN_TEXT_VALUE);
+        mPreference.setValue(DEVICE_ID, DEVICE_ID_TEXT_VALUE);
         mPreference.setValue(AI_CHAT_PREFERENCE, AI_CHAT_PREFERENCE_VALUE);
         mPreference.setValue(AI_CHAT_SEGMENT, AI_CHAT_SEGMENT_VALUE);
         mPreference.setValue(AI_CHAT_USER_ID, AI_CHAT_USER_ID_VALUE);
+        mPreference.setValue(ORIGINAL_PLATFORM_ID, ORIGINAL_PLATFORM_ID_TEXT_VALUE);
 
         chatView = findViewById(R.id.chatView);
 

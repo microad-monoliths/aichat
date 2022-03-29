@@ -44,12 +44,16 @@ import static com.sprobe.aichat_library.ui.fragment.AiChatFragment.chipsToArray;
 import static com.sprobe.aichat_library.utils.Constants.AI_CHAT_PREFERENCE_VALUE;
 import static com.sprobe.aichat_library.utils.Constants.AI_CHAT_SEGMENT_VALUE;
 import static com.sprobe.aichat_library.utils.Constants.AI_CHAT_USER_ID_VALUE;
+import static com.sprobe.aichat_library.utils.Constants.DEVICE_ID_TEXT_VALUE;
 import static com.sprobe.aichat_library.utils.Constants.MONOLITHS_DISPLAY_ID_PLAIN_TEXT_VALUE;
+import static com.sprobe.aichat_library.utils.Constants.ORIGINAL_PLATFORM_ID_TEXT_VALUE;
 import static com.sprobe.aichat_library.utils.Constants.TOP_OF_CHAT_LIST;
 import static com.sprobe.aichat_library.utils.SharedPreferenceConst.AI_CHAT_PREFERENCE;
 import static com.sprobe.aichat_library.utils.SharedPreferenceConst.AI_CHAT_SEGMENT;
 import static com.sprobe.aichat_library.utils.SharedPreferenceConst.AI_CHAT_USER_ID;
+import static com.sprobe.aichat_library.utils.SharedPreferenceConst.DEVICE_ID;
 import static com.sprobe.aichat_library.utils.SharedPreferenceConst.MONOLITHS_DISPLAY_ID_PLAIN_TEXT;
+import static com.sprobe.aichat_library.utils.SharedPreferenceConst.ORIGINAL_PLATFORM_ID;
 import static com.sprobe.aichat_library.utils.SharedPreferenceConst.QUESTION_NUMBER_COUNTER;
 
 public class ChatView extends RelativeLayout implements AiChatHostAdapter.Callback {
@@ -77,7 +81,6 @@ public class ChatView extends RelativeLayout implements AiChatHostAdapter.Callba
     protected FollowRequest.Attributes mAttributes;
     protected FollowRequest.User mUser;
     protected FollowRequest.Event mEvent;
-    protected String mOriginalPlatformId;
 
     public ChatView(@NonNull @NotNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -109,7 +112,6 @@ public class ChatView extends RelativeLayout implements AiChatHostAdapter.Callba
         mPreference = SharedPreferenceUtils.getInstance(context);
 
         mPreference.setValue(QUESTION_NUMBER_COUNTER, 0);
-        mOriginalPlatformId = mPreference.getStringValue(MONOLITHS_DISPLAY_ID_PLAIN_TEXT, MONOLITHS_DISPLAY_ID_PLAIN_TEXT_VALUE);
 
         mChatRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
@@ -178,7 +180,7 @@ public class ChatView extends RelativeLayout implements AiChatHostAdapter.Callba
 
         ReplyRequest request = new ReplyRequest();
         request.setEvent(event);
-        request.setOriginalPlatformId(mOriginalPlatformId);
+        request.setOriginalPlatformId(mPreference.getStringValue(ORIGINAL_PLATFORM_ID, null));
 
         mLastChipRequest = request;
         if (getQuestionNumberCounter() <= 7) {
@@ -251,6 +253,7 @@ public class ChatView extends RelativeLayout implements AiChatHostAdapter.Callba
         mAttributes = new FollowRequest.Attributes();
         mAttributes.setPreferences(mPreference.getStringValue(AI_CHAT_PREFERENCE, AI_CHAT_PREFERENCE_VALUE));
         mAttributes.setSegment(mPreference.getStringValue(AI_CHAT_SEGMENT, AI_CHAT_SEGMENT_VALUE));
+        mAttributes.setDeviceId(mPreference.getStringValue(DEVICE_ID, DEVICE_ID_TEXT_VALUE));
 
         // Set User data
         mUser = new FollowRequest.User();
@@ -264,13 +267,13 @@ public class ChatView extends RelativeLayout implements AiChatHostAdapter.Callba
 
         FollowRequest followRequest = new FollowRequest();
         followRequest.setEvent(mEvent);
-        followRequest.setOriginalPlatformId(mPreference.getStringValue(MONOLITHS_DISPLAY_ID_PLAIN_TEXT, MONOLITHS_DISPLAY_ID_PLAIN_TEXT_VALUE));
+        followRequest.setOriginalPlatformId(mPreference.getStringValue(ORIGINAL_PLATFORM_ID, ORIGINAL_PLATFORM_ID_TEXT_VALUE));
 
         Log.d(TAG, "Follow Request Preferences: " + mAttributes.getPreferences());
         Log.d(TAG, "Follow Request Segment: " + mAttributes.getSegment());
         Log.d(TAG, "Follow Request ID: " + mUser.getId());
         Log.d(TAG, "Follow Request TimeStamp: " + mEvent.getTimestamp());
-        Log.d(TAG, "Follow Request UUID: " + followRequest.getOriginalPlatformId());
+        Log.d(TAG, "Follow Request Device ID: " + mAttributes.getDeviceId());
 
         AiChatHelper.getService().follow(followRequest, new Callback<FollowResponse>() {
             @Override
@@ -300,6 +303,7 @@ public class ChatView extends RelativeLayout implements AiChatHostAdapter.Callba
         Log.d(TAG, "Reply Request OriginalPlatformID: " + replyRequest.getOriginalPlatformId());
         Log.d(TAG, "Reply Request Preferences: " + mAttributes.getPreferences());
         Log.d(TAG, "Reply Request Segment: " + mAttributes.getSegment());
+        Log.d(TAG, "Reply Request Device ID: " + mAttributes.getDeviceId());
         Log.d(TAG, "Reply Request ID: " + mUser.getId());
         Log.d(TAG, "Reply Request Timestamp: " + replyRequest.getEvent().getTimestamp());
         Log.d(TAG, "Reply Request MessageId: " + replyRequest.getEvent().getMessageId());

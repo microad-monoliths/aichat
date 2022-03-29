@@ -16,5 +16,9 @@ public class SharedPreferenceConst {
     public static final String AI_CHAT_USER_ID = "ai_chat_user_id";
     //Question Number Counter
     public static final String QUESTION_NUMBER_COUNTER = "question_number_counter";
+    //Question Number Counter
+    public static final String DEVICE_ID = "device_id";
+    //Question Number Counter
+    public static final String ORIGINAL_PLATFORM_ID = "original_platform_id";
 
 }
