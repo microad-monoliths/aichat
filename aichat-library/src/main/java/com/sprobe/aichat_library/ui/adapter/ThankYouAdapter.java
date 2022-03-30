@@ -121,7 +121,7 @@ public class ThankYouAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     if (mItemNumberThreeImage != 0) {
                         Picasso.get().load(mItemNumberThreeImage).into(mQuestionNumberImageView);
                     } else {
-                        Picasso.get().load(R.drawable.number_two).into(mQuestionNumberImageView);
+                        Picasso.get().load(R.drawable.number_three).into(mQuestionNumberImageView);
                     }
                     break;
                 default:
