@@ -139,10 +139,10 @@ public class ChatView extends RelativeLayout implements AiChatHostAdapter.Callba
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     int recyclePosition = ((LinearLayoutManager) Objects.requireNonNull(mChatRecyclerView.getLayoutManager()))
                             .findFirstVisibleItemPosition();
+                    mQuestionNumberTextView.setText(MessageFormat.format("Q{0}", recyclePosition));
                     if (recyclePosition != mLastPosition && recyclePosition != 0) {
                         mBackToTopTextView.setVisibility(View.VISIBLE);
                         if (recyclePosition <= mDiagnosisLastPosition) {
-                            mQuestionNumberTextView.setText(MessageFormat.format("Q{0}", recyclePosition));
                             mQuestionNumberTextView.setVisibility(View.VISIBLE);
                             mQuestionNumber7TextView.setVisibility(View.VISIBLE);
                         } else {
@@ -163,9 +163,7 @@ public class ChatView extends RelativeLayout implements AiChatHostAdapter.Callba
     public void onStartClick(ArrayList<ChatModel> list) {
         Log.d(TAG, "onStartClick");
         Log.d(TAG, "isClicked " + list.get(0).isClicked());
-        if (!list.get(0).isClicked()) {
-            sendFollowAPI();
-        }
+        sendFollowAPI();
     }
 
     @Override
@@ -279,6 +277,23 @@ public class ChatView extends RelativeLayout implements AiChatHostAdapter.Callba
             @Override
             public void success(FollowResponse followResponse, Response response) {
                 Log.d(TAG, "sendFollowAPI: success");
+
+                mThankYouList = new ArrayList<>();
+                mLastPosition = 0;
+                mDiagnosisLastPosition = 0;
+                mChatList = new ArrayList<>();
+                mPreference.setValue(QUESTION_NUMBER_COUNTER, 0);
+
+                int size = mAiChatHostAdapter.getItemCount();
+                Log.d(TAG, "size " + size);
+                for (int i = size - 1; i > 0; i--) {
+                    mAiChatHostAdapter.remove(i);
+                }
+                mAiChatHostAdapter.notifyDataSetChanged();
+                mQuestionNumberTextView.setText("Q1");
+                mQuestionNumberTextView.setVisibility(View.VISIBLE);
+                mQuestionNumber7TextView.setVisibility(View.VISIBLE);
+                mBackToTopTextView.setVisibility(View.GONE);
 
                 setChatModel(followResponse, null);
             }

@@ -277,18 +277,14 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
             ChatModel object = mChatList.get(0);
 
-            if (!object.isClicked()) {
-                mStartBtn.setOnClickListener(v -> {
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
-                        return;
-                    }
-                    mLastClickTime = SystemClock.elapsedRealtime();
+            mStartBtn.setOnClickListener(v -> {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
-                    mCallback.onStartClick(mChatList);
-
-                    object.setClicked(true);
-                });
-            }
+                mCallback.onStartClick(mChatList);
+            });
 
             mLayout.setOnClickListener(v -> {
                 mCallback.updateLastTimeClicked();
