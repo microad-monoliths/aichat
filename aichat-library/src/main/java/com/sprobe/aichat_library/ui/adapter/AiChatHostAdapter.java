@@ -573,6 +573,10 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         ImageView mQrCodeImageView;
 
+        TextView mQrCodeTextView1;
+
+        TextView mQrCodeTextView2;
+
         ConstraintLayout mExpandableListLayout;
 
         RecyclerView mRecyclerView;
@@ -597,6 +601,8 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             mCloseImageView = itemView.findViewById(R.id.close_imageView);
             mRecyclerView = itemView.findViewById(R.id.resultItemDetails_recyclerView);
             mQrCodeImageView = itemView.findViewById(R.id.qrCode_imageView);
+            mQrCodeTextView1 = itemView.findViewById(R.id.qrCode_textView1);
+            mQrCodeTextView2 = itemView.findViewById(R.id.qrCode_textView2);
 
         }
 
@@ -623,23 +629,36 @@ public class AiChatHostAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             }
 
             if (object.getRecommendationItem().getMetadata() != null) {
-                if (object.getRecommendationItem().getMetadata().getTitle() != null) {
+                if (object.getRecommendationItem().getMetadata().getTitle() != null ||
+                        !object.getRecommendationItem().getMetadata().getTitle().isEmpty()) {
                     mTitleTextView.setText(object.getRecommendationItem().getMetadata().getTitle());
                 }
-                if (object.getRecommendationItem().getMetadata().getItemName() != null) {
+                if (object.getRecommendationItem().getMetadata().getItemName() != null ||
+                        !object.getRecommendationItem().getMetadata().getItemName().isEmpty()) {
                     mItemNameTextView.setText(object.getRecommendationItem().getMetadata().getItemName());
                 }
-                if (object.getRecommendationItem().getMetadata().getPackageName() != null) {
+                if (object.getRecommendationItem().getMetadata().getPackageName() != null ||
+                        !object.getRecommendationItem().getMetadata().getPackageName().isEmpty()) {
                     mPackageNameTextView.setText(object.getRecommendationItem().getMetadata().getPackageName());
                 }
-                if (object.getRecommendationItem().getMetadata().getRecommendationScore() != null) {
+                if (object.getRecommendationItem().getMetadata().getRecommendationScore() != null ||
+                        !object.getRecommendationItem().getMetadata().getRecommendationScore().isEmpty()) {
                     mRecommendationScoreBar.setRating(Float.parseFloat(object.getRecommendationItem().getMetadata().getRecommendationScore()));
                 }
-                if (object.getRecommendationItem().getMetadata().getMainImageUrl() != null) {
+                if (object.getRecommendationItem().getMetadata().getMainImageUrl() != null ||
+                        !object.getRecommendationItem().getMetadata().getMainImageUrl().isEmpty()) {
                     Picasso.get().load(object.getRecommendationItem().getMetadata().getMainImageUrl()).into(mMainImageImageView);
                 }
-                if (object.getRecommendationItem().getMetadata().getQrCodeUrl() != null) {
+                if (object.getRecommendationItem().getMetadata().getQrCodeUrl() != null ||
+                        !object.getRecommendationItem().getMetadata().getQrCodeUrl().isEmpty()) {
                     Picasso.get().load(object.getRecommendationItem().getMetadata().getQrCodeUrl()).into(mQrCodeImageView);
+                    mQrCodeImageView.setVisibility(View.VISIBLE);
+                    mQrCodeTextView1.setVisibility(View.VISIBLE);
+                    mQrCodeTextView2.setVisibility(View.VISIBLE);
+                } else {
+                    mQrCodeImageView.setVisibility(View.GONE);
+                    mQrCodeTextView1.setVisibility(View.GONE);
+                    mQrCodeTextView2.setVisibility(View.GONE);
                 }
 
                 switch (object.getRecommendationItem().getOrder()) {

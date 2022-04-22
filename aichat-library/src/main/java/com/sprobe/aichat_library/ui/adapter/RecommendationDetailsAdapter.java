@@ -107,17 +107,31 @@ public class RecommendationDetailsAdapter extends RecyclerView.Adapter<BaseViewH
             ReplyResponse.Details object = mList.get(position);
 
             if (object.getHeader() != null) {
-                Log.d("RecommendationDetails", "header " + object.getHeader());
-                mHeaderTextView.setText(object.getHeader());
+                if (!object.getHeader().isEmpty()) {
+                    Log.d("RecommendationDetails", "header " + object.getHeader());
+                    mHeaderTextView.setText(object.getHeader());
+                    mHeaderTextView.setVisibility(View.VISIBLE);
+                } else {
+                    mHeaderTextView.setVisibility(View.GONE);
+                }
             }
             if (object.getImageUrl() != null) {
-                Log.d("RecommendationDetails", "image URl " + object.getImageUrl());
-                Picasso.get().load(object.getImageUrl()).into(mImageUrlImageView);
+                if (!object.getImageUrl().isEmpty()) {
+                    Log.d("RecommendationDetails", "image URl " + object.getImageUrl());
+                    Picasso.get().load(object.getImageUrl()).into(mImageUrlImageView);
+                    mImageUrlImageView.setVisibility(View.VISIBLE);
+                } else {
+                    mImageUrlImageView.setVisibility(View.GONE);
+                }
             }
             if (object.getDescription() != null) {
-                Log.d("RecommendationDetails", "description " + object.getDescription());
-                mDescriptionTextView.setVisibility(View.VISIBLE);
-                mDescriptionTextView.setText(object.getDescription());
+                if (!object.getDescription().isEmpty()) {
+                    Log.d("RecommendationDetails", "description " + object.getDescription());
+                    mDescriptionTextView.setVisibility(View.VISIBLE);
+                    mDescriptionTextView.setText(object.getDescription());
+                } else {
+                    mDescriptionTextView.setVisibility(View.GONE);
+                }
             }
 
         }
@@ -151,21 +165,32 @@ public class RecommendationDetailsAdapter extends RecyclerView.Adapter<BaseViewH
             ReplyResponse.Details object = mList.get(position);
 
             if (object.getHeader() != null) {
-                Log.d("RecommendationDetails", "header " + object.getHeader());
-                mHeaderTextView.setText(object.getHeader());
+                if (!object.getHeader().isEmpty()) {
+                    Log.d("RecommendationDetails", "header " + object.getHeader());
+                    mHeaderTextView.setText(object.getHeader());
+                    mHeaderTextView.setVisibility(View.VISIBLE);
+                } else {
+                    mHeaderTextView.setVisibility(View.GONE);
+                }
             }
             if (object.getImageUrl() != null) {
-                Log.d("RecommendationDetails", "image URl " + object.getImageUrl());
-                Picasso.get().load(object.getImageUrl()).into(mImageUrlImageView);
+                if (!object.getImageUrl().isEmpty()) {
+                    Log.d("RecommendationDetails", "image URl " + object.getImageUrl());
+                    Picasso.get().load(object.getImageUrl()).into(mImageUrlImageView);
+                    mImageUrlImageView.setVisibility(View.VISIBLE);
+                } else {
+                    mImageUrlImageView.setVisibility(View.GONE);
+                }
             }
             if (object.getDescription() != null) {
-                Log.d("RecommendationDetails", "description " + object.getDescription());
-                mDescriptionTextView.setVisibility(View.VISIBLE);
-                mDescriptionTextView.setText(object.getDescription());
-            } else {
-                mDescriptionTextView.setVisibility(View.GONE);
+                if (!object.getDescription().isEmpty()) {
+                    Log.d("RecommendationDetails", "description " + object.getDescription());
+                    mDescriptionTextView.setVisibility(View.VISIBLE);
+                    mDescriptionTextView.setText(object.getDescription());
+                } else {
+                    mDescriptionTextView.setVisibility(View.GONE);
+                }
             }
-
         }
     }
 }

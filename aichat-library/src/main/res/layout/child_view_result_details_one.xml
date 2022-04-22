@@ -12,6 +12,7 @@
         android:text="@string/text_main_headline"
         android:textColor="@color/jp_text_gray_color"
         android:textSize="28sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +33,7 @@
         android:layout_height="500dp"
         android:layout_marginTop="50dp"
         android:src="@drawable/skincare_girl"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewRight" />
@@ -47,6 +49,7 @@
         android:textAlignment="center"
         android:textColor="@color/jp_text_gray_color"
         android:textSize="20sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageUrl_imageView"
         app:layout_constraintStart_toStartOf="@+id/imageUrl_imageView"

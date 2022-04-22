@@ -92,28 +92,30 @@
             tools:listitem="@layout/recycler_view_item" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/qrCode_textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_jp_medium"
             android:text="@string/text_subheading"
             android:textColor="@color/button_pressed"
             android:textSize="25sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/resultItemDetails_recyclerView"
             app:layout_constraintStart_toStartOf="@+id/resultItemDetails_recyclerView"
             app:layout_constraintTop_toBottomOf="@+id/resultItemDetails_recyclerView" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/qrCode_textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="68dp"
             android:fontFamily="@font/noto_sans_jp_medium"
             android:text="@string/text_subheading_2"
             android:textColor="@color/jp_text_gray_color"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView12"
-            app:layout_constraintStart_toStartOf="@+id/textView12"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/qrCode_textView1"
+            app:layout_constraintStart_toStartOf="@+id/qrCode_textView1"
             app:layout_constraintTop_toBottomOf="@+id/resultItemDetails_recyclerView" />
 
         <ImageView
@@ -121,9 +123,10 @@
             android:layout_width="217dp"
             android:layout_height="217dp"
             android:src="@drawable/qr_code_sample"
-            app:layout_constraintEnd_toEndOf="@+id/textView13"
-            app:layout_constraintStart_toStartOf="@+id/textView13"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/qrCode_textView2"
+            app:layout_constraintStart_toStartOf="@+id/qrCode_textView2"
+            app:layout_constraintTop_toBottomOf="@+id/qrCode_textView2" />
 
         <TextView
             android:id="@+id/close_button"
